@@ -1,28 +1,65 @@
-body {
-  margin: 0;
-  font-family: sans-serif;
+/* ===== design tokens ===== */
+:root{
+  --bg: #ffffff;
+  --text: #1f2937;
+  --muted:#6b7280;
+  --primary:#6366f1;       /* メイン色（青紫） */
+  --primary-weak:#eef2ff;  /* 薄いアクセント */
+  --border:#e5e7eb;
+  --radius:14px;
+  --container:960px;
+  --space:16px;
 }
 
-header {
-  background: #669966;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+/* base */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--text); background:var(--bg);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans JP",sans-serif;
+  line-height:1.7;
 }
+img{max-width:100%;height:auto;border-radius:12px}
 
-nav {
-  display: flex;
-  justify-concent: center;
-  padding: 10px;
-}
+/* layout */
+.container{max-width:var(--container);margin-inline:auto;padding:0 20px}
+main{padding:24px 0}
 
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: bold;
-}
+/* headings */
+h1{font-size:clamp(28px,4vw,40px);margin:24px 0 12px}
+h2{font-size:clamp(22px,3vw,28px);margin:32px 0 12px}
+p,li{font-size:16px}
 
-nav a:hover  {
-  text-decoration: underline;
+/* links */
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* header / nav */
+header{
+  position:sticky;top:0;z-index:1000;background:#fff;
+  border-bottom:1px solid var(--border);
+  backdrop-filter:saturate(160%) blur(6px);
 }
+nav{display:flex;gap:18px;align-items:center;justify-content:center;padding:12px}
+nav a{color:#374151;font-weight:600;padding:8px 10px;border-radius:10px}
+nav a:hover{background:var(--primary-weak);text-decoration:none}
+nav a.active{background:var(--primary);color:#fff}
+
+/* hero */
+.hero{
+  padding:36px 0 10px;
+  background:radial-gradient(1200px 200px at 50% -60px,var(--primary-weak),transparent 70%);
+}
+.section-sub{color:var(--muted);margin-top:-4px}
+
+/* card & grid */
+.card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+  padding:calc(var(--space)*1.5);
+  box-shadow:0 6px 20px rgba(0,0,0,.04);
+}
+.grid{display:grid;gap:calc(var(--space)*1.5)}
+@media (min-width:720px){.grid-2{grid-template-columns:1fr 2fr}}
+
+ul{padding-left:1.2em;margin:.5em 0 0}
+li+li{margin-top:6px}
